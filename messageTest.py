@@ -1,13 +1,7 @@
-# ID: 552262976082542596
-#Token: NTUyMjYyOTc2MDgyNTQyNTk2.D19CUw.p1x5hgVX1n5JccS_v7rUBNb6WLo
-#8
-#https://discordapp.com/oauth2/authorize?client_id=552262976082542596&scope=bot&permissions=8
-
 import discord
 import time
 import asyncio
 
-#messages = joined = 0
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -17,22 +11,6 @@ def read_token():
 TOKEN = read_token()
 
 client = discord.Client()
-
-#async def update_stats():
-#	await client.wait_until_ready()
-#	global messages, joined
-#	
-#	while not client.is_closed():
-#		try:
-#			with open("stats.txt","a") as f:
-#				f.write(f"Time: {int(time.time())}, Messages: {messages}, Members Joined: {joined}\n ")
-#			
-#			messages = 0
-#			joined = 0
-#			
-#			await  asyncio.sleep(1800) ##SYNCING EVERY 30 MINS
-#		except Exception as e:
-#			print(e)
 
 
 @client.event #event decorator/wrapper
@@ -66,5 +44,4 @@ async def on_member_join(member):
 		if str(channel) == "general":
 				await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
 
-#client.loop.create_task(update_stats())
 client.run(TOKEN)
