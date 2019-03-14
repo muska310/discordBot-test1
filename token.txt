@@ -1,1 +1,6 @@
+# ID: 552262976082542596
+#Token: NTUyMjYyOTc2MDgyNTQyNTk2.D19CUw.p1x5hgVX1n5JccS_v7rUBNb6WLo
+#8
+#https://discordapp.com/oauth2/authorize?client_id=552262976082542596&scope=bot&permissions=8
+
 NTUyMjYyOTc2MDgyNTQyNTk2.D19CUw.p1x5hgVX1n5JccS_v7rUBNb6WLo
