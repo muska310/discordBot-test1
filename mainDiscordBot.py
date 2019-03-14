@@ -20,22 +20,14 @@ async def on_ready():
 
 @client.event #event decorator/wrapper
 async def on_message(message):
-	global messages
-	messages += 1
-
-	id = client.get_guild(555107550350278678)
-	channels = ["commands"]
-	
-	if str(message.channel) in channels:
-		if message.content.find("!hello") != -1:
-			await message.channel.send("Watt up thoo") ## TEST MESSAGE
-
-		elif message.content == "!users":
-			await message.channel.send(f"""# of Members: {id.member_count}""")
+	if message.content == "!hello":
+		await message.channel.send("Watt up thoo") ## TEST MESSAGE
+	elif message.content == "!users":
+		await message.channel.send(f"""# of Members: {id.member_count}""")
+	elif message.content == "!logout":
+		await client.close()
 		
-		elif message.content == "!logout":
-			await client.close()
-			
+	
 @client.event #event decorator/wrapper
 async def on_member_join(member):
 	global joined 
