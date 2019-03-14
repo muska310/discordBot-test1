@@ -7,7 +7,7 @@ import discord
 import time
 import asyncio
 
-messages = joined = 0
+#messages = joined = 0
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -40,16 +40,6 @@ async def on_ready():
 	print(f"We have loggin in as {client.user}")
 
 
-
-@client.event #event decorator/wrapper
-async def on_member_join(member):
-	global joined 
-	joined += 1
-	for channel in member.server.channels:
-		if str(channel) == "general":
-				await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
-
-
 @client.event #event decorator/wrapper
 async def on_message(message):
 	global messages
@@ -67,6 +57,14 @@ async def on_message(message):
 		
 		elif message.content == "!logout":
 			await client.close()
+			
+@client.event #event decorator/wrapper
+async def on_member_join(member):
+	global joined 
+	joined += 1
+	for channel in member.server.channels:
+		if str(channel) == "general":
+				await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
 
 #client.loop.create_task(update_stats())
 client.run(TOKEN)
