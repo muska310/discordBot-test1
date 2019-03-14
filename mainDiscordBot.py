@@ -31,10 +31,8 @@ async def on_message(message):
 	
 @client.event #event decorator/wrapper
 async def on_member_join(member):
-	global joined 
-	joined += 1
 	for channel in member.server.channels:
 		if str(channel) == "general":
-				await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
+			await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
 
 client.run(TOKEN)
