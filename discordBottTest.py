@@ -2,72 +2,57 @@
 #Token: NTUyMjYyOTc2MDgyNTQyNTk2.D19CUw.p1x5hgVX1n5JccS_v7rUBNb6WLo
 #8
 #https://discordapp.com/oauth2/authorize?client_id=552262976082542596&scope=bot&permissions=8
+# watch: https://www.youtube.com/watch?v=DHbVpx-IpH8 
 
-import discord
+
+import json
 import time
 import asyncio
+import random
 
-#messages = joined = 0
+from discord import Game
+from discord.ext.commands import Bot
 
-def read_token():
-    with open("token.txt", "r") as f:
-        lines = f.readlines()
-        return lines[0].strip()
+BOT_PREFIX = ("?", "!")
 
-TOKEN = read_token()
+client = Bot(command_prefix = BOT_PREFIX)
 
-client = discord.Client()
-
-#async def update_stats():
-#	await client.wait_until_ready()
-#	global messages, joined
-#	
-#	while not client.is_closed():
-#		try:
-#			with open("stats.txt","a") as f:
-#				f.write(f"Time: {int(time.time())}, Messages: {messages}, Members Joined: {joined}\n ")
-#			
-#			messages = 0
-#			joined = 0
-#			
-#			await  asyncio.sleep(1800) ##SYNCING EVERY 30 MINS
-#		except Exception as e:
-#			print(e)
-
-
-@client.event #event decorator/wrapper
+@client.event 
 async def on_ready():
-	print(f"We have loggin in as {client.user}")
-
-
-
-#@client.event #event decorator/wrapper
-#async def on_member_join(member):
-#	global joined 
-#	joined += 1
-#	for channel in member.server.channels:
-#		if str(channel) == "general":
-#				await client.send_message(f"""Welcome to the virgins lair {member.mention} """)
-
-
-@client.event #event decorator/wrapper
-async def on_message(message):
-	global messages
-	messages += 1
-
-	id = client.get_guild(555107550350278678)
-	channels = ["commands"]
+	await client.change_presence(game=Game(name="with humans"))
+	print('Logged in as')
+	print(client.user.name)
+	print(client.user.id)
+	print('------')
 	
-	if str(message.channel) in channels:
-		if message.content.find("!hello") != -1:
-			await message.channel.send("Watt up thoo") ## TEST MESSAGE
+@client.command(name='8ball', 
+		description='Provides an answer to a yes/no question.'
+	       	aliases =['eight_ball', 'eightball', '8-ball'],
+	       	pass_context = True)
+async def eight_ball(context):
+	possible_responces = [
+		'That is a resounding no',
+		'It is not looking likely',
+		'Too hard to tell',
+		'It is quite possible',
+		'Definitely',
+	]
+	await client.say(random.choice(possible_responses) + ", " + context.message.author.mention)
 
-		elif message.content == "!users":
-			await message.channel.send(f"""# of Members: {id.member_count}""")
+@client.command()
+async def square(number):
+	squared_value = int(number) + int(number)
+	await client.say(str(number) + " squared is " + str(squared_value))
 		
-		elif message.content == "!logout":
-			await client.close()
 
-#client.loop.create_task(update_stats())
+@client.event
+async def on_message(message):
+	if message.content.startswith('!hello'):
+		await client.sebd_message(message.channel, 'Hi! testBot ready!')
+	elif message.content.startswith('!flip):
+		flip = random.choice(['Heads', 'Tails'])
+		await client.send_message(message.channel, flip)
+	elif 
+
 client.run(TOKEN)
 
