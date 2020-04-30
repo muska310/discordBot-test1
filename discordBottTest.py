@@ -3,6 +3,7 @@
 #8
 #https://discordapp.com/oauth2/authorize?client_id=552262976082542596&scope=bot&permissions=8
 # watch: https://www.youtube.com/watch?v=DHbVpx-IpH8 
+#TOP IS JUST A TEST
 
 
 import json
